@@ -1,6 +1,7 @@
 import "./register.css"
 import React, { useState } from "react"
 import { register } from "../../lib/Social-Network-Library";
+import register_img from "../../assets/img/register_img.jpg"
 
 function RegisterAccount() {
 
@@ -51,21 +52,26 @@ function RegisterAccount() {
     }
 
     return (
-        
-        <div className="register-container">
-            <h2>Créez votre compte</h2>
+        <div>
+            <div className="divFlex">
+                <img src={register_img} alt="" />
+                <div className="register-container">
 
-            <input type="text" className="prenom" placeholder="Prénom" onChange={addPrenom}/>
-            <input type="text" className="nom" placeholder="Nom" onChange={addNom}/>
-            <input type="text" className="email" placeholder="E-mail" onChange={addEmail}/>
-            <input type="password" className="motDePasse" placeholder="Mot de passe"onChange={addMotDePasse}/>
-            <input type="password" className="motDePasse" placeholder="Confirmer mot de passe" onChange={confirmMotDePasse}/>
+                    <h2>Créez votre compte</h2>
 
-            <button className="RegisterBtn" onClick={onClickRegister}>Valider</button>
+                    <input type="text" className="prenom" placeholder="Prénom" onChange={addPrenom}/>
+                    <input type="text" className="nom" placeholder="Nom" onChange={addNom}/>
+                    <input type="text" className="email" placeholder="E-mail" onChange={addEmail}/>
+                    <input type="password" className="motDePasse" placeholder="Mot de passe"onChange={addMotDePasse}/>
+                    <input type="password" className="motDePasse" placeholder="Confirmer mot de passe" onChange={confirmMotDePasse}/>
 
-            {
-               messageErreur && <p>{messageErreur}</p> 
-            }
+                    <button className="RegisterBtn" onClick={onClickRegister}>Valider</button>
+
+                </div>
+            </div>
+                {
+                messageErreur && <p className="messageErreur">{messageErreur}</p> 
+                }
         </div>
     );
 }
