@@ -4,7 +4,7 @@ import PostsList from '../../components/PostsList/PostsList';
 function FilActu() {
 
     return ( 
-       <PostsList />
+        <PostsList />
        );
 }
 
