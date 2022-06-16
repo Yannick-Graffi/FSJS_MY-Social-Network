@@ -5,23 +5,26 @@ import {addComment} from '../../lib/Social-Network-Library'
 
 function Post (props) {
     const [post,setPost] = useState({
-    postId: props.p.postId,
+    _id: props.p._id,
     title : props.p.title,
     text: props.p.content,
-    commentaire: props.p.comments,
+    commentaires: props.p.comments,
     date: props.p.date,
     nbLike : props.p.likes,
     
     })
+    
     const[newComm,setNewCom] = useState('')
-    //{post.commentaire.map(comment => <div>comment</div>)}
+    
 
     const updateComment = (e) => {
         setNewCom(e.currentTarget.value)
     }
-    const addComment = (newComm) => {
-        addComment(post.postId,newComm) 
-        newComm=''
+    const addCom = async () => {
+        let result = await addComment(post._id,newComm) ; 
+        if (result.success) {
+            console.log("ok")
+        }
     }
     
     return ( 
@@ -29,11 +32,11 @@ function Post (props) {
             <div><h2>{post.title}</h2><p>{post.date}</p></div>
             <p>{post.text}</p>
             <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
-            
-            <div className="form-group"><FontAwesomeIcon icon={faComment} />
-                 <textarea className="comment" id="comment" OnChange={updateComment} rows="2" ></textarea>
-                 <FontAwesomeIcon icon={faPlus} onClick={addComment} />
+            <div className="form-group">
+                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
+                 <FontAwesomeIcon icon={faPlus} onClick={() => {addCom()}} />
             </div>  
+           <div>{post.commentaires.map((coms,index) =>  <div key={index}><FontAwesomeIcon icon={faComment} />{coms.content}</div> )}</div>
         </div>
      );
 }
