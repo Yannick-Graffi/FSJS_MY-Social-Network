@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFaceSmile,faComment,faPlus } from '@fortawesome/free-solid-svg-icons'
-import {addComment} from '../../lib/Social-Network-Library'
+import { faFaceSmile,faComment,faPlus,faHeart } from '@fortawesome/free-solid-svg-icons'
+import {addComment,addLike} from '../../lib/Social-Network-Library'
 
 function Post (props) {
     const [post,setPost] = useState({
@@ -20,17 +20,24 @@ function Post (props) {
     }
     const addCom = () => {
         savCom()
-        setNewComT("")
         props.updateList()
-        console.log(newComm)
+        setNewComT("")
     }
 
     const savCom = async () => {
+        console.log(post._id)
         let result = await addComment(post._id,newComm) ; 
         if (result.success) {
             console.log("ok")
         }
+    }
 
+    const savLike = async () => {
+        let result = await addLike(post._id); 
+        if (result.success) {
+            props.updateList()
+        }
+        else {console.log("ko",result.message)}
     }
     
     return ( 
@@ -38,7 +45,9 @@ function Post (props) {
             <div className="card-header text-center"><h2>{post.title}</h2><p></p></div>
             <div className="card-body">
                 <p>{post.text}</p>
-                <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
+                <div>{post.nbLike.length}<FontAwesomeIcon onClick={() => savLike()} icon={faFaceSmile} />
+                    <div>{post.nbLike.map((like,index) => <span key={index}><FontAwesomeIcon icon={faHeart} />{like.firstname}</span>)}</div>
+                </div>
                 <div className="form-group">
                     <h4>Ajouter un commentaire</h4>
                     <textarea className="comment" id="comment" onChange={updateComment} rows="2" value={newComm} ></textarea>
