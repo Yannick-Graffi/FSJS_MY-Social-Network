@@ -9,6 +9,7 @@ function RegisterAccount() {
     const [nom, setNom] = useState("");
     const [email, setEmail] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
+    const [confirmationMdP, setConfirmationMdP] = useState("");
 
 // Variable d'état pour le message d'erreur
 
@@ -27,17 +28,25 @@ function RegisterAccount() {
     function addMotDePasse(e) {
         setMotDePasse(e.target.value)
     }
+    function confirmMotDePasse(e) {
+        setConfirmationMdP(e.target.value)
+    }
 
 //Fonction qui se déclence au clic sur le bouton "Valider"
+
     const onClickRegister = async () => {
-
-        let result = await register(prenom, nom, email, motDePasse); // Utilisation de la fonction register
-        console.log(result);
-
-        if (result.success === false) {
-            setMessageErreur("Merci de renseigner tous les champs")
+        if (motDePasse === confirmationMdP) {
+            let result = await register(prenom, nom, email, motDePasse); // Utilisation de la fonction register
+            console.log(result);    
+            
+            if (result.success === false) {
+                setMessageErreur("Merci de renseigner tous les champs")
+            } else {
+                setMessageErreur("")
+            }    
+         
         } else {
-            setMessageErreur("")
+            setMessageErreur("Attention, les mots de passe sont différents")   
         }
     }
 
@@ -49,7 +58,8 @@ function RegisterAccount() {
             <input type="text" className="prenom" placeholder="Prénom" onChange={addPrenom}/>
             <input type="text" className="nom" placeholder="Nom" onChange={addNom}/>
             <input type="text" className="email" placeholder="E-mail" onChange={addEmail}/>
-            <input type="text" className="motDePasse" placeholder="Mot de passe"onChange={addMotDePasse}/>
+            <input type="password" className="motDePasse" placeholder="Mot de passe"onChange={addMotDePasse}/>
+            <input type="password" className="motDePasse" placeholder="Confirmer mot de passe" onChange={confirmMotDePasse}/>
 
             <button className="RegisterBtn" onClick={onClickRegister}>Valider</button>
 

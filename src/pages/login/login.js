@@ -42,7 +42,7 @@ function Loginpage() {
             <div>
                 <h2>Connexion</h2>
                 <input type="text" className="emailLogin" onChange={readEmail} placeholder="E-mail"/>
-                <input type="text" className="motDePasseLogin" onChange={readMotDePasse} placeholder="Mot de Passe"/>
+                <input type="password" className="motDePasseLogin" onChange={readMotDePasse} placeholder="Mot de Passe"/>
 
                 <button onClick={onClickConnect}>Connexion</button>
 
