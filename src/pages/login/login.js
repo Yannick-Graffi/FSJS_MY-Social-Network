@@ -2,6 +2,7 @@ import { useState } from "react";
 import {login} from "../../lib/Social-Network-Library";
 import "../login/login.css"
 import {useNavigate} from "react-router-dom"
+import login_img from "../../assets/img/login_img.jpg"
 
 function Loginpage() {
     
@@ -39,17 +40,21 @@ function Loginpage() {
 
     return (  
         <div>
-            <div>
-                <h2>Connexion</h2>
-                <input type="text" className="emailLogin" onChange={readEmail} placeholder="E-mail"/>
-                <input type="text" className="motDePasseLogin" onChange={readMotDePasse} placeholder="Mot de Passe"/>
+            <div className="divFlex">
+                <img src={login_img} alt="" />
+                <div className="login-container">
+                    <h2>Connexion</h2>
+                    <input type="text" className="emailLogin" onChange={readEmail} placeholder="E-mail"/>
+                    <input type="password" className="motDePasseLogin" onChange={readMotDePasse} placeholder="Mot de Passe"/>
 
-                <button onClick={onClickConnect}>Connexion</button>
-
-                {messageErreurLogin === "Wrong email or password" && "E-mail ou Mot de passe erronés "}
-                {messageErreurLogin === "Email and password are required." && "E-mail et mot de passe requis."}
-                                   
+                    <button onClick={onClickConnect}>Connexion</button>
+             
+                </div>
             </div>
+
+            {messageErreurLogin === "Wrong email or password" && <p className="messageErreur">E-mail ou Mot de passe erronés.</p>}
+            {messageErreurLogin === "Email and password are required." && <p className="messageErreur">E-mail et mot de passe requis.</p>}
+                       
         </div>
     );
 }

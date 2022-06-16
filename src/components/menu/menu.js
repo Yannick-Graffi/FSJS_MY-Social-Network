@@ -8,31 +8,32 @@ function Menu() {
     let navigate = useNavigate();
 
     const toDeconnect = async () => {
-        let result = await logout(); // Utilisation de la fonction login
+        let result = await logout(); // Utilisation de la fonction logout
 
-        navigate("/Login", { replace: true});
-        
+        navigate("/Login", { replace: true}); // retour à la page de connexion  
     }
 
     return (  
         <div>
 
-
-            { location.pathname === "/Actu"
+            { location.pathname === "/Actu" || location.pathname === "/Profil"
                 ?
                     <div className="menu-container">
                         <Link className="titre" to={"/Actu"}>MY Réseau Social</Link>
-                        <button onClick={toDeconnect}>Se déconnecter</button>
-                        
-                        {/* <Link to="/Login">Se déconnecter</Link> */}
+                        <div>
+                            <Link className="link" to="/Profil">Mon profil</Link>
+                            <button onClick={toDeconnect}>Se déconnecter</button>
+                        </div>
 
                     </div>
                 :
                     <div className="menu-container">
-                        <h1 className="titre">MY Réseau Social</h1>
                         <div>
-                            <Link to="/Login">Se connecter</Link>
-                            <Link to="/Register">Créer un compte</Link>
+                            <h1 className="titre">MY Réseau Social</h1>
+                        </div>
+                        <div>
+                            <Link className="link" to="/Login">Se connecter</Link>
+                            <Link className="link" to="/Register">Créer un compte</Link>
                         </div>
                     </div>
             }

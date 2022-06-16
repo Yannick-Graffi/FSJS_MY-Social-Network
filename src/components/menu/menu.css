@@ -1,6 +1,30 @@
 .titre{
-    color: black;
-    font-size: 16px;
+    color: white;
+    font-size: 25px;
     font-weight: bold;
     text-decoration: none;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.menu-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003049;
+}
+
+.link, .menu-container button{
+    margin-right: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: #FDF0D5;
+    border: 2px solid #669BBC;
+    background-color: #669BBC;
+    border-radius: 15px;
+}
+
+.menu-container button:hover, .link:hover{
+    color: #003049;
+    background-color: #FDF0D5;
 }
