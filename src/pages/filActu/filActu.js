@@ -1,10 +1,11 @@
 import React from 'react';
 import PostsList from '../../components/PostsList/PostsList';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function FilActu() {
 
     return ( 
-        <PostsList />
+        <PostsList className='container' />
        );
 }
 

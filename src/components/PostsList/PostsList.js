@@ -6,7 +6,7 @@ import AddPost from '../AddPost/AddPost';
 
 function PostsList () {
     const [posts,setPosts]= useState([])
-    
+    const [shwoAddInput,setAddInput]= useState(false)
     useEffect(() => {
         updateFromAPI()
     }, [])
@@ -16,6 +16,7 @@ function PostsList () {
             const pAPI = await getPosts()        
             if (pAPI.success) {
                 setPosts(pAPI.posts)
+                console.log('update')
             }
             else console.log('erreur')
         }
@@ -24,9 +25,24 @@ function PostsList () {
         setPosts(PostsN)
     }
 
-    return ( <div>
-              <AddPost add={addPost} />  
-                 {posts.map((post,index) => <Post  key={index} p={post}/> )}
+    return (<div>
+            <br />
+            {(!shwoAddInput) ?
+            <div>
+                <button className='btn btn-info' onClick={() => setAddInput(true)}>Ajouter un post </button>
+            </div>
+            :
+            <div>
+                <br />
+                <div className='container row align-items-center'>
+                    <AddPost add={addPost} undo={() => setAddInput(false) }/>  
+                </div>
+            </div>
+            }
+            <br />
+            <div className='container row align-items-center justify-content-start'>
+                 {posts.map((post,index) => <Post  updateList={updateFromAPI} key={post._id} p={post}/> )}
+            </div>
             </div>);
 }
 

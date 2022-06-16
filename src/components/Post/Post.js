@@ -9,41 +9,46 @@ function Post (props) {
     title : props.p.title,
     text: props.p.content,
     commentaires: props.p.comments,
-    date: props.p.date,
+    date: new Date (props.p.date),
     nbLike : props.p.likes,
-    
     })
-    
-    const[newComm,setNewCom] = useState('')
+    const[newComm,setNewComT] = useState('')
     
 
     const updateComment = (e) => {
-        setNewCom(e.currentTarget.value)
+        setNewComT(e.currentTarget.value)
     }
-    const addCom = async () => {
+    const addCom = () => {
+        savCom()
+        setNewComT("")
+        props.updateList()
+        console.log(newComm)
+    }
+
+    const savCom = async () => {
         let result = await addComment(post._id,newComm) ; 
         if (result.success) {
             console.log("ok")
         }
+
     }
     
     return ( 
-        <div>
-            <div><h2>{post.title}</h2><p>{post.date}</p></div>
-            <p>{post.text}</p>
-            <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
-<<<<<<< HEAD
-            <div className="form-group">
-                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
-                 <FontAwesomeIcon icon={faPlus} onClick={() => {addCom()}} />
-=======
-            
-            <div className="form-group"><FontAwesomeIcon icon={faComment} />
-                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
-                 <FontAwesomeIcon icon={faPlus} onClick={addComment} />
->>>>>>> 39d332a8eff6819458e77292727290ac58560717
-            </div>  
-           <div>{post.commentaires.map((coms,index) =>  <div key={index}><FontAwesomeIcon icon={faComment} />{coms.content}</div> )}</div>
+        <div className="card" style={{ width: "25rem", height: "30rem"  }}>
+            <div className="card-header text-center"><h2>{post.title}</h2><p></p></div>
+            <div className="card-body">
+                <p>{post.text}</p>
+                <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
+                <div className="form-group">
+                    <h4>Ajouter un commentaire</h4>
+                    <textarea className="comment" id="comment" onChange={updateComment} rows="2" value={newComm} ></textarea>
+                    <FontAwesomeIcon icon={faPlus} onClick={() => {addCom()}} />
+                </div>  
+                <div>{post.commentaires.map((coms) =>  <div key={coms._id}><FontAwesomeIcon icon={faComment} />{coms.content}</div> )}</div>
+                <div className="card-footer">
+                  <small className="text-muted">{post.date.toLocaleString('fr-FR', {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</small>
+                </div>
+            </div>
         </div>
      );
 }

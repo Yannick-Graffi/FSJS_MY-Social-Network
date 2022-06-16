@@ -2,6 +2,7 @@ import React,{ useState }  from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {createPost,getPosts} from '../../lib/Social-Network-Library'
 
+
 function AddPost(props) {
     const [newPost,setNewPost]=useState(
         {titre:'',
@@ -12,6 +13,11 @@ function AddPost(props) {
     }
     const handleChangeTexte = (e) => {
         setNewPost({titre:newPost.titre,texte:e.currentTarget.value})
+    }
+
+    const undoNew = () => {
+        setNewPost({titre:'',texte:''})
+        props.undo()
     }
 
     const savePost = () => {
@@ -26,7 +32,7 @@ function AddPost(props) {
         setNewPost({titre:'',texte:''})
     }
 
-    return ( <div id="divInput">
+    return ( <div id="divInput container">
         <div className="input-group mb-3">
         <span className="input-group-text" id="basic-addon1">Titre </span>
         <input type="text" className="form-control" placeholder="Titre de la publication" name='title' value={newPost.titre} onChange={handleChangeTitle}  />
@@ -39,7 +45,7 @@ function AddPost(props) {
             savePost()
         }}>Enregistrer</button>
         <button type="button" className="btn btn-warning" onClick={() => {
-        props.undo()
+            undoNew()
         }}>Annuler</button>
     </div> );
 }
