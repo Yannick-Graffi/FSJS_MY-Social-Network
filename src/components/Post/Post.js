@@ -32,16 +32,10 @@ function Post (props) {
             <div><h2>{post.title}</h2><p>{post.date}</p></div>
             <p>{post.text}</p>
             <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
-<<<<<<< HEAD
-            <div className="form-group">
-                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
-                 <FontAwesomeIcon icon={faPlus} onClick={() => {addCom()}} />
-=======
             
             <div className="form-group"><FontAwesomeIcon icon={faComment} />
                  <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
                  <FontAwesomeIcon icon={faPlus} onClick={addComment} />
->>>>>>> 39d332a8eff6819458e77292727290ac58560717
             </div>  
            <div>{post.commentaires.map((coms,index) =>  <div key={index}><FontAwesomeIcon icon={faComment} />{coms.content}</div> )}</div>
         </div>
