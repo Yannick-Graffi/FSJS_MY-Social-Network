@@ -1,6 +1,6 @@
 import React from 'react';
-import Post from '../../components/Posts/Posts';
-import { getPosts } from '../../lib/Social-Network-Library'
+import Post from '../../components/Posts/Post';
+import { getPosts } from '../../lib/Social-Network-Library';
 
 
 function FilActu() {
