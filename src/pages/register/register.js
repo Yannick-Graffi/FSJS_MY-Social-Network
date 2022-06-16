@@ -35,7 +35,7 @@ function RegisterAccount() {
         console.log(result);
 
         if (result.success === false) {
-            setMessageErreur(result.message)
+            setMessageErreur("Merci de renseigner tous les champs")
         } else {
             setMessageErreur("")
         }

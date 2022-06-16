@@ -1,12 +1,13 @@
 import './App.css';
 import FilActu from './pages/filActu/filActu';
+import Loginpage from './pages/login/login';
 import RegisterAccount from './pages/register/register';
 
 function App() {
   return (
     <div className="App">
-      <FilActu />
-      <RegisterAccount/>
+      <h1>MY Réseau Social</h1>
+      <Loginpage />
     </div>
   );
 }
