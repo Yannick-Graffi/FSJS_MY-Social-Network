@@ -1,0 +1,71 @@
+.profil-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 25vh;
+}
+
+.infos-container{
+    background-color: #003049;
+    color: #FDF0D5 ;
+    width: 250px;
+    height: 400px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+}
+
+.infos-container h3{
+    border-bottom: 1px solid #FDF0D5;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.infos-container p{
+    padding: 0px 20px 20px 10px;
+    position: relative;
+}
+
+.infos-container input{
+    margin: 0px 20px 20px 5px;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+
+.input-container{
+    margin-top: 10px;
+}
+
+.modifierBtn{
+    border-radius: 15px;
+    border-color: #669BBC;
+    background-color: #669BBC;
+    color: #FDF0D5 ;
+    box-shadow: -2px 2px 10px #669BBC;
+    position: relative;
+    top: -10px;
+}
+
+.validerBtn{
+    border-radius: 15px;
+    border-color: #669BBC;
+    background-color: #669BBC;
+    color: #FDF0D5 ;
+    box-shadow: -2px 2px 10px #669BBC;
+    position: relative;
+    top: 10px;
+}
+
+.infos-container button:hover{
+
+}
+
+.p-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.infos-container{
+    display: flex;
+}

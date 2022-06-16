@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
+.titre:hover{
+    color: white;
+}
+
 .menu-container{
     display: flex;
     justify-content: space-between;

@@ -3,18 +3,23 @@ import "../profil/profil.css"
 import { getCurrentUserProfile, updateCurrentUserProfile} from "../../lib/Social-Network-Library";
 
 function Profil() {
-    const[userId, setUserId] = useState("");
+    // const[userId, setUserId] = useState("");
+// Variables d'état des infos utilisateur
     const[userPrenom, setUserPrenom] = useState("");
     const[userNom, setUserNom] = useState("");
     const[userMail, setUserMail] = useState ("");
     const[userAge, setUserAge] = useState();
     const[userMetier, setUserMetier] = useState("");
 
+// Variable d'état qui vérifie le clic sur le bouton "modifier profil"
     const[onClickChangeInfos, setChangeInfos] = useState(false)
+
+// utilisation de la fonction getCurrentUserProfile de la librairie pour récupérer
+// les infos utilisateurs depuis le serveur
 
     const getUserId = async () => {
         let result = await getCurrentUserProfile(); 
-        setUserId(result._id);
+        // setUserId(result._id);
         setUserPrenom(result.firstname)
         setUserNom(result.lastname)
         setUserMail(result.email)
@@ -22,8 +27,11 @@ function Profil() {
         setUserMetier(result.occupation)
         console.log(result);
     }
+    useEffect(() =>{
+        getUserId();
+    }, [])
 
-    function changeInfos () {
+    function changeInfos () { // fonction qui change le boléen de la variable
         if (onClickChangeInfos) {
             setChangeInfos(false)
         } else{
@@ -31,6 +39,7 @@ function Profil() {
         }
     }
     
+    // Fonctions pour récupérer les nouvelles infos utilisateur
         function changePrenom(e) {
             setUserPrenom(e.target.value)
         }
@@ -47,73 +56,80 @@ function Profil() {
             setUserMetier(e.target.value)
         }
 
-
+// Fonction de la libraire pour mettre à jour les infos utilisateur en cliquant sur le bouton "valider"
     const validerChangeInfos = async () => {
         let result = await updateCurrentUserProfile(userPrenom, userNom, userMail, userAge, userMetier)
         setChangeInfos(false)
         
     }
 
-
-    useEffect(() =>{
-        getUserId();
-    }, [])
-
-
     return (  
 
         <div className="profil-container">
             <img src="" alt=""></img>
             
-        { onClickChangeInfos 
-          ? <div className="infos-container">
-                <input type="text" 
-                       className="newPrenom" 
-                       defaultValue={userPrenom} 
-                       onChange={changePrenom} 
-                       placeholder="Prénom"/>
+        { onClickChangeInfos // Si l'utilisateur clique sur le bouton
+          ? <div className="infos-container"> {/* Alors tu affiches les inputs */}  
+                <h3>Modifier profil</h3>
+                <div className="input-container">
+                    <input type="text" 
+                        className="newInput" 
+                        defaultValue={userPrenom} 
+                        onChange={changePrenom} 
+                        placeholder="Prénom"/>
 
-                <input type="text" 
-                       className="newNom" 
-                       defaultValue={userNom} 
-                       onChange={changeNom} 
-                       placeholder="Nom"/>
+                    <input type="text" 
+                        className="newInput" 
+                        defaultValue={userNom} 
+                        onChange={changeNom} 
+                        placeholder="Nom"/>
 
-                <input type="text" 
-                       className="newMail" 
-                       defaultValue={userMail} 
-                       onChange={changeMail} 
-                       placeholder="E-mail" />
+                    <input type="text" 
+                        className="newInput" 
+                        defaultValue={userMail} 
+                        onChange={changeMail} 
+                        placeholder="E-mail" />
 
-                <input type="text" 
-                       className="newAge" 
-                       defaultValue={userAge} 
-                       onChange={changeAge} 
-                       placeholder="Age" />
+                    <input type="text" 
+                        className="newInput" 
+                        defaultValue={userAge} 
+                        onChange={changeAge} 
+                        placeholder="Age" />
 
-                <input type="text" 
-                       className="newMetier" 
-                       defaultValue={userMetier} 
-                       onChange={changeMetier} 
-                       placeholder="Métier" />
+                    <input type="text" 
+                        className="newInput" 
+                        defaultValue={userMetier} 
+                        onChange={changeMetier} 
+                        placeholder="Métier" />
+                </div>
 
-                <button onClick={validerChangeInfos}>Valider</button>
+                <button className="validerBtn" onClick={validerChangeInfos}>Valider</button>
                 
             </div>
 
-          : <div className="infos-container">
-                <p>Prénom = {userPrenom}</p>
-                <p>nom = {userNom}</p>
-                <p>E-mail = {userMail}</p>
-                <p>Age = {userAge} ans</p>
-                <p>Métier = {userMetier}</p>
+          : <div className="infos-container"> {/*Si non, tu affiches les infos utilisateurs */}
+                <h3>Mon profil :</h3>
 
-                <button onClick={changeInfos}>Modifier votre profil</button>
-
+                <div className="infos">
+                    <div className="p-container">
+                        <p>Prénom:</p> <p>{userPrenom}</p>
+                    </div>
+                    <div className="p-container">
+                        <p>nom:</p> <p>{userNom}</p>
+                    </div>
+                    <div className="p-container">
+                        <p>E-mail:</p> <p>{userMail}</p>
+                    </div>
+                    <div className="p-container">
+                        <p>Age:</p> <p>{userAge} ans</p>
+                    </div>
+                    <div className="p-container">
+                        <p>Métier:</p> <p>{userMetier}</p>
+                    </div>                      
+                </div>             
+                <button className="modifierBtn" onClick={changeInfos}>Modifier votre profil</button>
             </div>
         }
-
-
         </div>
     );
 }
