@@ -34,6 +34,7 @@ function Post (props) {
     }
     
     return ( 
+<<<<<<< HEAD
         <div className="card" style={{ width: "25rem", height: "30rem"  }}>
             <div className="card-header text-center"><h2>{post.title}</h2><p></p></div>
             <div className="card-body">
@@ -49,6 +50,18 @@ function Post (props) {
                   <small className="text-muted">{post.date.toLocaleString('fr-FR', {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</small>
                 </div>
             </div>
+=======
+        <div>
+            <div><h2>{post.title}</h2><p>{post.date}</p></div>
+            <p>{post.text}</p>
+            <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
+            
+            <div className="form-group"><FontAwesomeIcon icon={faComment} />
+                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
+                 <FontAwesomeIcon icon={faPlus} onClick={addComment} />
+            </div>  
+           <div>{post.commentaires.map((coms,index) =>  <div key={index}><FontAwesomeIcon icon={faComment} />{coms.content}</div> )}</div>
+>>>>>>> d7622ccfdf3fe682e0a4679ac823487070792d32
         </div>
      );
 }
