@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import PostsList from '../../components/PostsList/PostsList';
 
 function FilActu() {
 
-    return ( <div>
-        un post
-    </div> );
+    return ( 
+       <PostsList />
+       );
 }
 
 export default FilActu;
