@@ -12,12 +12,11 @@ function Post (props) {
     nbLike : props.p.likes
     })
 
-    console.log(props.p)
     return ( 
         <div>
             <div><h2>{post.title}</h2><p>{post.date}</p></div>
             <p>{post.text}</p>
-            <div>{post.nbLike.length}</div>    
+            <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>    
         </div>
      );
 }
