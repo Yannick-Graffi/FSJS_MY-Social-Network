@@ -1,9 +1,18 @@
 import "../menu/menu.css"
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import { logout } from "../../lib/Social-Network-Library";
 
 
 function Menu() {
     let location = useLocation();
+    let navigate = useNavigate();
+
+    const toDeconnect = async () => {
+        let result = await logout(); // Utilisation de la fonction login
+
+        navigate("/Login", { replace: true});
+        
+    }
 
     return (  
         <div>
@@ -13,7 +22,9 @@ function Menu() {
                 ?
                     <div className="menu-container">
                         <Link className="titre" to={"/Actu"}>MY Réseau Social</Link>
-                        <Link to="/Login">Se déconnecter</Link>
+                        <button onClick={toDeconnect}>Se déconnecter</button>
+                        
+                        {/* <Link to="/Login">Se déconnecter</Link> */}
 
                     </div>
                 :
@@ -24,7 +35,6 @@ function Menu() {
                             <Link to="/Register">Créer un compte</Link>
                         </div>
                     </div>
-
             }
         </div>
     );
