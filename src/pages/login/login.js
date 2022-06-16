@@ -33,7 +33,7 @@ function Loginpage() {
             setMessageErreurLogin(result.message);
         } else {
             setMessageErreurLogin("");
-            navigate("/FilActu", { replace: true});
+            navigate("/Actu", { replace: true});
         }
     }
 
