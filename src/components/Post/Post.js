@@ -31,7 +31,7 @@ function Post (props) {
             <div>{post.nbLike.length}<FontAwesomeIcon icon={faFaceSmile} /></div>
             
             <div className="form-group"><FontAwesomeIcon icon={faComment} />
-                 <textarea className="comment" id="comment" OnChange={updateComment} rows="2" ></textarea>
+                 <textarea className="comment" id="comment" onChange={updateComment} rows="2" ></textarea>
                  <FontAwesomeIcon icon={faPlus} onClick={addComment} />
             </div>  
         </div>
