@@ -1,6 +1,6 @@
 import "./register.css"
 import React, { useState } from "react"
-import {register} from "../../lib/Social-Network-Library";
+import { register } from "../../lib/Social-Network-Library";
 
 function RegisterAccount() {
 
@@ -9,6 +9,10 @@ function RegisterAccount() {
     const [nom, setNom] = useState("");
     const [email, setEmail] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
+
+// Variable d'état pour le message d'erreur
+
+    const [messageErreur, setMessageErreur] = useState("");
 
 // Fonctions pour récupérer la saisie des différents inputs
     function addPrenom(e) {
@@ -29,8 +33,13 @@ function RegisterAccount() {
 
         let result = await register(prenom, nom, email, motDePasse); // Utilisation de la fonction register
         console.log(result);
-    }
 
+        if (result.success === false) {
+            setMessageErreur(result.message)
+        } else {
+            setMessageErreur("")
+        }
+    }
 
     return (
         
@@ -43,6 +52,10 @@ function RegisterAccount() {
             <input type="text" className="motDePasse" placeholder="Mot de passe"onChange={addMotDePasse}/>
 
             <button className="RegisterBtn" onClick={onClickRegister}>Valider</button>
+
+            {
+               messageErreur && <p>{messageErreur}</p> 
+            }
         </div>
     );
 }
